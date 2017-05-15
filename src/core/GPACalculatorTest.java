@@ -8,9 +8,10 @@ public class GPACalculatorTest {
         GPACalculator calc = new GPACalculator();
         Scanner s = new Scanner(System.in);
         calc.SGPA();
+        System.out.printf("Your semester GPA is: %.6f\n\n", calc.getGpa());
         System.out.println("Do you have old GPA? (Yes/No)");
         if(s.next().equalsIgnoreCase("yes"))calc.CGPA();
-        System.out.printf("Your GPA is: %.2f\n", calc.getGpa());
+        System.out.printf("Your GPA is: %.6f\n", calc.getGpa());
     }
 }
 
