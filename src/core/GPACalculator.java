@@ -4,12 +4,14 @@ import java.util.Scanner;
 
 public class GPACalculator {
     
-    public static void main(String [] args){
-        Scanner s = new Scanner(System.in);
-        double w = 0.0;
-        double gpa = 0.0;
-        int cot = 0;
-        int co = 0;
+    private static Scanner s = new Scanner(System.in);
+    private static double w = 0.0;
+    private static double gpa = 0.0;
+    private static int cot = 0;
+    private static int co = 0;
+    
+    
+    public static void SGPA(){
         System.out.println("Enter Grades | Credit hours (To stop type \"stop\"):");
         String grade = s.next();
         while (!grade.equalsIgnoreCase("stop")) {
@@ -30,16 +32,24 @@ public class GPACalculator {
             grade = s.next();
         }
         gpa = gpa / cot;
-        System.out.println("Do you have old GPA? (Yes/No)");
-        if(s.next().equalsIgnoreCase("yes")){
-            System.out.println("Enter old GPA | old credit hours:");
-            double oldgpa = s.nextDouble();
-            co = s.nextInt();
-            gpa = ((gpa * cot) + (oldgpa * co))/(cot + co);
-        }
-        System.out.println("gpa " + gpa);
     }
+    
+    public static void CGPA(){
+        System.out.println("Enter old GPA | old credit hours:");
+        double oldgpa = s.nextDouble();
+        co = s.nextInt();
+        gpa = ((gpa * cot) + (oldgpa * co))/(cot + co);
+    }
+    
+    public static void main(String [] args){
+        SGPA();
+        System.out.println("Do you have old GPA? (Yes/No)");
+        if(s.next().equalsIgnoreCase("yes"))CGPA();
+        System.out.printf("Your GPA is: %.2f\n", gpa);
+    }
+    
 }
+
 
 /*
     public static void main(String [] args){
