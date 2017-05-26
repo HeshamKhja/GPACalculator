@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class GPACalculatorTest {
     
     public static void main(String [] args){
-        GPACalculator calc = new GPACalculator();
+        GPACalculator calc = GPACalculator.getInstance();
         Scanner s = new Scanner(System.in);
         calc.SGPA();
         System.out.printf("Your semester GPA is: %.6f\n\n", calc.getGpa());

@@ -5,14 +5,22 @@ import java.util.Scanner;
 
 public class GPACalculator implements IGPACalculator{
     
-    private static final Scanner s = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
     private double w;
     private double gpa = 0.0;
     private int cot = 0;
     private int co;
+    private static GPACalculator instance = null;
 
-    public GPACalculator(){
+    private GPACalculator(){
         
+    }
+    
+    public static GPACalculator getInstance(){
+        if (instance == null) {
+            instance = new GPACalculator();
+        }
+        return instance;
     }
         
     @Override
@@ -28,9 +36,9 @@ public class GPACalculator implements IGPACalculator{
     @Override
     public void SGPA(){
         System.out.println("Enter Grades | Credit hours (To stop type \"stop\"):");
-        String grade = s.next();
+        String grade = SCANNER.next();
         while (!grade.equalsIgnoreCase("stop")) {
-            co = s.nextInt();
+            co = SCANNER.nextInt();
             switch (grade){
                 case "A+" : w = 4.00; break;
                 case "A" : w = 3.75; break;
@@ -44,7 +52,7 @@ public class GPACalculator implements IGPACalculator{
             }
             cot += co;
             gpa += (co * w);
-            grade = s.next();
+            grade = SCANNER.next();
         }
         gpa = gpa / cot;
     }
@@ -52,8 +60,8 @@ public class GPACalculator implements IGPACalculator{
     @Override
     public void CGPA(){
         System.out.println("Enter old GPA | old credit hours:");
-        double oldgpa = s.nextDouble();
-        co = s.nextInt();
+        double oldgpa = SCANNER.nextDouble();
+        co = SCANNER.nextInt();
         gpa = ((gpa * cot) + (oldgpa * co))/(cot + co);
     }
     
